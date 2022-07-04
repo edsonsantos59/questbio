@@ -1,0 +1,33 @@
+{% extends "projeto5_website/base.html" %}
+{% block content %}
+
+  <!--{{csrf_token}} -->
+<div class='box'>
+  <div class='wave -one'></div>
+  <div class='wave -two'></div>
+   <div class='wave -three'></div>
+</div>
+
+  <div class="login">
+    <h4>LOGIN</h4>
+    <form  action="" method="post">
+      {% csrf_token %}
+      {% if next %}
+        <input type="hidden" name="next" value="{{ next }}" />
+      {% endif %}
+        <div class="textbox">
+          <!--<fa-icon [icon]="['far', 'envelope']"></fa-icon>-->
+          <i id="icon_user" class="bi bi-person-circle"></i>
+          <input type="text" name="username" id="username" placeholder="Usuário">
+        </div>
+        <div class="textbox">
+          <i id="icon_lock"class="bi bi-file-lock2"></i>
+          <input type="password" name="password" id="password" placeholder="Senha">
+        </div>
+
+        <div>
+          <input class="entra" type="submit" name="" value="ENTRAR">
+        </div>
+    </form>
+  </div>
+{% endblock %}

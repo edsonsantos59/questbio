@@ -1,0 +1,50 @@
+<script src="javascript">
+  function checkbox() {
+    alert("a")
+  }
+</script>
+
+{% extends "projeto5_website/base.html" %}
+{% block content %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="">
+        <a href="{% url 'logout' %}">Sair</a>
+			</div>
+    </div>
+  </div>
+  <form class="container_peguntas" method="post">
+    {% csrf_token %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="info_user">
+          <input type="text" name="nome" placeholder="Digite seu Nome" required>
+        </div>
+        <div class="info_user">
+          <input type="text" name="email" placeholder="Digite seu Email" required>
+        </div>
+        <div class="info_user">
+          <input type="text" name="ra" placeholder="Digite seu CPF" maxlength="11" required>
+          {{ username }}
+        </div>
+        <div class="col-md-12">
+            {% for pergunta,alternativas in perguntas.items %}
+              <h3>{{pergunta}}</h3>
+              <fieldset>
+                {% for alternativa in alternativas %}
+                  <input type="radio" name="{{pergunta}}" value="{{alternativa.perfil}}" required>
+                  <label>{{alternativa.conteudo}}</label><br>
+                {% endfor %}
+              </fieldset>
+            {% endfor %}
+            <button class="enviar" type="submit" onclick="checkbox()">
+              Enviar
+            </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "projeto5_website/base.html" %}
+{% load static %}
+{% block content %}
+<a href="https://questbiopark.pythonanywhere.com/admin">Administrador</a>
+<div id="div-teste">
+    <h1 align="center">Resultados</h1>
+</div>
+  <table class="table" id="table" >
+    <thead>
+      <tr class="tabela">
+        <td>Aluno</td>
+        <td>Dominância</td>
+        <td>Influência</td>
+        <td>Cautela</td>
+        <td>Estabilidade</td>
+        <td>Maior dominancia</td>
+      </tr>
+    </thead>
+    <tbody>
+      <td>
+        <h5 style="display: inline-block">Predominância:</h5>
+        <div class="indicacao">
+          <label class="progress-bar " style="display: inline-block; width: 125px; padding: 1%" id="dominancia" name="dominancia"> Dominância </label>
+          <label class="progress-bar bg-success" style="display: inline-block; width: 125px; padding: 1%" id="influencia" name="influencia"> Influência </label>
+          <label class="progress-bar bg-danger progress-bar-stripped" style="display: inline-block; width: 125px; padding: 1%" id="cautela" name="cautela"> Cautela </label>
+          <label class="progress-bar bg-warning progress-bar-stx'ripped" style="display: inline-block; width: 125px; padding: 1%" id="estabilidade" name="estabilidade"> Estabilidade </label>
+        </div>
+      </td>
+      {% for resultado in resultados %}
+        <tr>
+          <td >{{resultado.aluno.nome}}</td>
+          <td>
+              <div title="Dominância" class="progress-bar" style="width: {% widthratio resultado.dominancia 1 100 %}%">
+                  {% widthratio resultado.dominancia 1 100 %}
+              </div>
+          </td>
+          <td>
+            <div title="Influencia" class="progress-bar bg-success" style="width: {% widthratio resultado.influencia 1 100 %}%">
+                {% widthratio resultado.influencia 1 100 %}
+            </div>
+          </td>
+          <td>
+            <div title="Cautela" class="progress-bar bg-danger" style="width: {% widthratio resultado.cautela 1 100 %}%">
+                {% widthratio resultado.cautela 1 100 %}
+            </div>
+          </td>
+          <td>
+            <div title="Estabilidade" class="progress-bar bg-warning" style="width: {% widthratio resultado.estabilidade 1 100 %}%">
+                {% widthratio resultado.estabilidade 1 100 %}
+            </div>
+          </td>
+          <td>
+          <div>
+              {{ resultado.resultado_final }}
+          </div>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+  </table>
+</div>
+{% endblock %}

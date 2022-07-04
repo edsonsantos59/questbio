@@ -1,0 +1,49 @@
+{% extends "projeto5_website/base.html" %}
+{% load static %}
+{% block content %}
+<div class="jumbotron d-flex align-items-center">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="obg">
+                    {% for resultado in resultados %}
+                    <h3 class="text-center">Obrigado {{ resultado.aluno.nome }}!</h3>
+                    {% endfor %}
+                    <p class="text-center">Essa pesquisa é muito importante para que possamos lhe ajudar em sua jornada. Assim que der compartilharemos o resultado deste teste com você!</p>
+                    <div class="obg_1">
+                        <img src="{% static 'img/check-mark.png' %}" width="300" alt="">
+                    </div>
+                    <div id="div-teste">
+                        <h1 align="center">Resultado</h1>
+                    </div>
+                    <table class="table" id="table" >
+                        <thead>
+                            <tr class="tabela">
+                                <td>Aluno</td>
+                                <td>Resultado Final</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for resultado in resultados %}
+                            <tr>
+                                <td>{{resultado.aluno.nome}}</td>
+                                <td>
+                                    <div>
+                                    <p style="width: 200px">Você tem dominancia {{resultado.resultado_final}}</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="botao">
+                        <a href="{% url 'logout' %}">
+                            <input class="sair" type="submit" name="" value="Sair" href="">
+                        </a>
+                    </div>
+                </div>
+           </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
